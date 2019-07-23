@@ -1,0 +1,39 @@
+server:
+  port: 1100
+
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: service_authentication
+    password: service_authentication
+    template:
+      exchange: service_authentication
+      default-receive-queue: service_authentication
+      routing-key: service_authentication
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tpfdb?currentSchema=authentication
+    username: postgres
+    password: postgres
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate.ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: false
+        jdbc:
+          lob:
+            non_contextual_creation: true
+security:
+  oauth2:
+    client:
+      client-id: service_authentication
+      client-secret: service_authentication
+    resource:
+      token-info-uri: http://localhost:1100/oauth/check_token
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:postgresql://192.168.0.200:5432/tpfdb?currentSchema=authentication
