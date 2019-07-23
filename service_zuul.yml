@@ -15,39 +15,14 @@ zuul:
     connect-timeout-millis: 60000
     socket-timeout-millis: 60000
   routes:  
-    authorization-service:
+    service_authentication:
       path: /api/auth/**
       sensitiveHeaders:
-      serviceId: AUTHORIZATION-SERVICE
-    fpt-service:
-      path: /api/fpt/**
+      serviceId: SERVICE_AUTHENTICATION
+    service_restclient:
+      path: /api/**
       sensitiveHeaders: 
-      serviceId: FPT-SERVICE
-    momo-service:
-      path: /api/momo/**
-      sensitiveHeaders: 
-      serviceId: MOMO-SERVICE
-    payoo-service:
-      path: /api/payoo/**
-      sensitiveHeaders: 
-      serviceId: PAYOO-SERVICE 
-    sms-service:
-      path: /api/sms/**
-      sensitiveHeaders: 
-      serviceId: SMS-SERVICE
-    automomo-service:
-      path: /api/auto-momo/**
-      sensitiveHeaders: 
-      serviceId: AUTOMOMO-SERVICE
-    vinid-service:
-      path: /api/vinid/**
-      sensitiveHeaders: 
-      serviceId: VINID-SERVICE
-    trusting-social-service:
-      path: /api/trusting-social/**
-      sensitiveHeaders: 
-      serviceId: TRUSTING-SOCIAL-SERVICE
-      
+      serviceId: SERVICE_RESTCLIENT    
   add-proxy-headers: true
   
 ribbon:
