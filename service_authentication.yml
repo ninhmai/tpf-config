@@ -32,6 +32,14 @@ security:
       client-secret: service_authentication
     resource:
       token-info-uri: http://localhost:1100/oauth/check_token
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
 ---
 spring:
   profiles: dev
