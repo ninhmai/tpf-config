@@ -1,0 +1,64 @@
+server:
+  port: 9000
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+
+zuul:
+  host:
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 60000
+  routes:  
+    authorization-service:
+      path: /api/auth/**
+      sensitiveHeaders:
+      serviceId: AUTHORIZATION-SERVICE
+    fpt-service:
+      path: /api/fpt/**
+      sensitiveHeaders: 
+      serviceId: FPT-SERVICE
+    momo-service:
+      path: /api/momo/**
+      sensitiveHeaders: 
+      serviceId: MOMO-SERVICE
+    payoo-service:
+      path: /api/payoo/**
+      sensitiveHeaders: 
+      serviceId: PAYOO-SERVICE 
+    sms-service:
+      path: /api/sms/**
+      sensitiveHeaders: 
+      serviceId: SMS-SERVICE
+    automomo-service:
+      path: /api/auto-momo/**
+      sensitiveHeaders: 
+      serviceId: AUTOMOMO-SERVICE
+    vinid-service:
+      path: /api/vinid/**
+      sensitiveHeaders: 
+      serviceId: VINID-SERVICE
+    trusting-social-service:
+      path: /api/trusting-social/**
+      sensitiveHeaders: 
+      serviceId: TRUSTING-SOCIAL-SERVICE
+      
+  add-proxy-headers: true
+  
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+      
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 60000
