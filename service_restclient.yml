@@ -1,0 +1,20 @@
+server:
+  port: 4000
+
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: service_restclient
+    password: service_restclient
+    template:
+      exchange: service_restclient
+      default-receive-queue: service_restclient
+      routing-key: service_restclient
+security:
+  oauth2:
+    client:
+      client-id: service_restclient
+      client-secret: service_restclient
+    resource:
+      token-info-uri: http://localhost:1100/oauth/check_token
