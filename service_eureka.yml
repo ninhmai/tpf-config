@@ -6,7 +6,11 @@ eureka:
     fetchRegistry: false
     serviceUrl:
       defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+    preferSameZoneEureka: true
   instance:
     preferIpAddress: true
   server:
       waitTimeInMsWhenSyncEmpty: 5
+logging:
+  level:
+    com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver: WARN
