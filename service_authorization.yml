@@ -7,10 +7,7 @@ spring:
     port: 5672
     username: service_authorization
     password: service_authorization
-    template:
-      exchange: service_authorization
-      default-receive-queue: service_authorization
-      routing-key: service_authorization
+    app-id: service_authorization
   datasource:
     url: jdbc:postgresql://localhost:5432/tpfdb?currentSchema=authentication
     username: postgres

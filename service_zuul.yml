@@ -22,7 +22,7 @@ zuul:
     service_restclient:
       path: /api/**
       sensitiveHeaders: 
-      serviceId: SERVICE_RESTCLIENT    
+      serviceId: SERVICE_REST
   add-proxy-headers: true
   
 ribbon:
