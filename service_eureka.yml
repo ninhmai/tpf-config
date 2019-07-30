@@ -14,3 +14,6 @@ eureka:
 logging:
   level:
     com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver: WARN
+
+
+    
