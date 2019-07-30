@@ -14,12 +14,4 @@ eureka:
 logging:
   level:
     com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver: WARN
-
----
-spring:
-  profiles: dev
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: tpf-service-config:8761/eureka
     
