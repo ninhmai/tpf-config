@@ -15,14 +15,14 @@ zuul:
     connect-timeout-millis: 60000
     socket-timeout-millis: 60000
   routes:  
-    service_authentication:
+    tpf_service_authentication:
       path: /api/auth/**
       sensitiveHeaders:
-      serviceId: SERVICE_AUTHENTICATION
-    service_restclient:
+      serviceId: TPF_SERVICE_AUTHENTICATION
+    tpf_service_restclient:
       path: /api/**
       sensitiveHeaders: 
-      serviceId: SERVICE_REST
+      serviceId: TPF_SERVICE_REST
   add-proxy-headers: true
   
 ribbon:

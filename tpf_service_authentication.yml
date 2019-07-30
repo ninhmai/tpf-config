@@ -1,13 +1,13 @@
 server:
-  port: 1200
+  port: 1100
 
 spring:
   rabbitmq:
     host: localhost
     port: 5672
-    username: service_authorization
-    password: service_authorization
-    app-id: service_authorization
+    username: tpf_service_authentication
+    password: tpf_service_authentication
+    app-id: tpf_service_authentication
   datasource:
     url: jdbc:postgresql://localhost:5432/tpfdb?currentSchema=authentication
     username: postgres
@@ -25,8 +25,8 @@ spring:
 security:
   oauth2:
     client:
-      client-id: service_authorization
-      client-secret: service_authorization
+      client-id: tpf_service_authentication
+      client-secret: tpf_service_authentication
       access-token-uri: http://localhost:1100/oauth/token
     resource:
       token-info-uri: http://localhost:1100/oauth/check_token
@@ -43,3 +43,15 @@ spring:
   profiles: dev
   datasource:
     url: jdbc:postgresql://192.168.0.200:5432/tpfdb?currentSchema=authentication
+security:
+  oauth2:
+    client:
+      client-id: tpf_service_authentication
+      client-secret: tpf_service_authentication
+      access-token-uri: http://localhost:1100/oauth/token
+    resource:
+      token-info-uri: http://localhost:1100/oauth/check_token
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: tpf-service-config:8761/eureka

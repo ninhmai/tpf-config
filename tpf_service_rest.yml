@@ -5,14 +5,14 @@ spring:
   rabbitmq:
     host: localhost
     port: 5672
-    username: service_restclient
-    password: service_restclient
-    app-id: service_restclient
+    username: tpf_service_restclient
+    password: tpf_service_restclient
+    app-id: tpf_service_restclient
 security:
   oauth2:
     client:
-      client-id: service_restclient
-      client-secret: service_restclient
+      client-id: tpf_service_restclient
+      client-secret: tpf_service_restclient
     resource:
       token-info-uri: http://localhost:1100/oauth/check_token
 eureka:
