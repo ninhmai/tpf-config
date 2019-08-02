@@ -8,20 +8,9 @@ spring:
     username: tpf-service-authorization
     password: tpf-service-authorization
     app-id: tpf-service-authorization
-  datasource:
-    url: jdbc:postgresql://localhost:5432/tpfdb?currentSchema=authentication
-    username: postgres
-    password: postgres
-  jpa:
-    show-sql: true
-    generate-ddl: true
-    hibernate.ddl-auto: update
-    properties:
-      hibernate:
-        format_sql: false
-        jdbc:
-          lob:
-            non_contextual_creation: true
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/authorization
 security:
   oauth2:
     client:
@@ -41,8 +30,11 @@ eureka:
 ---
 spring:
   profiles: dev
-  datasource:
-    url: jdbc:postgresql://192.168.0.200:5432/tpfdb?currentSchema=authentication
+  rabbitmq:
+    host: tpf-opensource-rabbitmq
+  data:
+    mongodb:
+      uri: mongodb://tpf-opensource-mongodb:27017/authorization
 security:
   oauth2:
     client:
@@ -52,4 +44,4 @@ security:
 eureka:
   client:
     serviceUrl:
-      defaultZone: tpf-service-eureka:8761/eureka
+      defaultZone:  http://tpf-service-eureka:8761/eureka

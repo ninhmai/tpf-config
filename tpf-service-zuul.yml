@@ -1,6 +1,5 @@
 server:
   port: 9000
-
 eureka:
   client:
     registerWithEureka: true
@@ -9,7 +8,6 @@ eureka:
       defaultZone: http://localhost:8761/eureka
   instance:
     hostname: localhost
-
 zuul:
   host:
     connect-timeout-millis: 60000
@@ -18,17 +16,16 @@ zuul:
     tpf_service_authentication:
       path: /api/auth/**
       sensitiveHeaders:
-      serviceId: TPF_SERVICE_AUTHENTICATION
+      serviceId: TPF-SERVICE-AUTHENTICATION
     tpf_service_restclient:
       path: /api/**
       sensitiveHeaders: 
-      serviceId: TPF_SERVICE_REST
+      serviceId: TPF-SERVICE-RESTCLIENT
   add-proxy-headers: true
   
 ribbon:
-  ReadTimeout: 60000
-  ConnectTimeout: 60000
-      
+  ReadTimeout: 150000
+  ConnectTimeout: 60000  
 hystrix:
   command:
     default:
@@ -36,4 +33,12 @@ hystrix:
         isolation:
           strategy: THREAD
           thread:
-            timeoutInMilliseconds: 60000
+            timeoutInMilliseconds: 40000
+
+---
+spring:
+  profiles: dev
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://tpf-service-eureka:8761/eureka

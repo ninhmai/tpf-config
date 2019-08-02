@@ -21,14 +21,13 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
-# security:
-#   oauth2:
-#     client:
-#       client-id: tpf-service-authentication
-#       client-secret: tpf-service-authentication
-#       access-token-uri: http://localhost:1100/oauth/token
-#     resource:
-#       token-info-uri: http://localhost:1100/oauth/check_token
+security:
+  oauth2:
+    client:
+      client-id: tpf-service-authentication
+      client-secret: tpf-service-authentication
+    resource:
+      token-info-uri: http://localhost:1100/oauth/check_token
 eureka:
   client:
     registerWithEureka: true
@@ -40,9 +39,15 @@ eureka:
 ---
 spring:
   profiles: dev
+  rabbitmq:
+    host: tpf-opensource-rabbitmq
   datasource:
     url: jdbc:postgresql://192.168.0.200:5432/tpfdb?currentSchema=authentication
+security:
+  oauth2:
+    resource:
+      token-info-uri: http://tpf-service-authentication:1100/oauth/check_token
 eureka:
   client:
     serviceUrl:
-      defaultZone: tpf-service-eureka:8761/eureka
+      defaultZone: http://tpf-service-eureka:8761/eureka
