@@ -36,13 +36,16 @@ eureka:
       defaultZone: http://localhost:8761/eureka
   instance:
     hostname: localhost
+logging:
+  level:
+    com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver: WARN
 ---
 spring:
   profiles: dev
   rabbitmq:
     host: tpf-opensource-rabbitmq
   datasource:
-    url: jdbc:postgresql://192.168.0.200:5432/tpfdb?currentSchema=authentication
+    url: jdbc:postgresql://tpf-opensource-postgres:5432/tpfdb?currentSchema=authentication
 security:
   oauth2:
     resource:
@@ -51,3 +54,5 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://tpf-service-eureka:8761/eureka
+  instance:
+    hostname: tpf-service-authentication

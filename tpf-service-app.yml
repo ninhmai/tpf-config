@@ -1,18 +1,22 @@
 server:
-  port: 4000
+  port: 4004
 
 spring:
   rabbitmq:
     host: localhost
     port: 5672
-    username: tpf-service-restclient
-    password: tpf-service-restclient
-    app-id: tpf-service-restclient
+    username: tpf-service-app
+    password: tpf-service-app
+    app-id: tpf-service-app
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/tpfdb
 security:
   oauth2:
     client:
-      client-id: tpf-service-restclient
-      client-secret: tpf-service-restclient
+      client-id: tpf-service-app
+      client-secret: tpf-service-app
+      access-token-uri: http://localhost:1100/oauth/token
     resource:
       token-info-uri: http://localhost:1100/oauth/check_token
 eureka:
@@ -31,8 +35,13 @@ spring:
   profiles: dev
   rabbitmq:
     host: tpf-opensource-rabbitmq
+  data:
+    mongodb:
+      uri: mongodb://tpf-opensource-mongodb:27017/tpfdb
 security:
   oauth2:
+    client:
+      access-token-uri: http://tpf-service-authentication:1100/oauth/token
     resource:
       token-info-uri: http://tpf-service-authentication:1100/oauth/check_token
 eureka:
@@ -40,4 +49,4 @@ eureka:
     serviceUrl:
       defaultZone:  http://tpf-service-eureka:8761/eureka
   instance:
-    hostname: tpf-service-restclient
+    hostname: tpf-service-app

@@ -27,6 +27,9 @@ eureka:
       defaultZone: http://localhost:8761/eureka
   instance:
     hostname: localhost
+logging:
+  level:
+    com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver: WARN
 ---
 spring:
   profiles: dev
@@ -34,7 +37,7 @@ spring:
     host: tpf-opensource-rabbitmq
   data:
     mongodb:
-      uri: mongodb://tpf-opensource-mongodb:27017/authorization
+      uri: mongodb://tpf-opensource-mongodb:27017/tpfdb
 security:
   oauth2:
     client:
@@ -45,3 +48,5 @@ eureka:
   client:
     serviceUrl:
       defaultZone:  http://tpf-service-eureka:8761/eureka
+  instance:
+    hostname: tpf-service-authorization
