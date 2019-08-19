@@ -1,6 +1,5 @@
 server:
   port: 1200
-
 spring:
   rabbitmq:
     host: localhost
@@ -10,7 +9,7 @@ spring:
     app-id: tpf-service-authorization
   data:
     mongodb:
-      uri: mongodb://localhost:27017/authorization
+      uri: mongodb://localhost:27017/tpfdb
 security:
   oauth2:
     client:
