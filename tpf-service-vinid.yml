@@ -1,0 +1,52 @@
+server:
+  port: 4007
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: tpf-service-vinid
+    password: tpf-service-vinid
+    app-id: tpf-service-vinid
+    logstash: tpf-service-logstash-vinid
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/tpfdb
+security:
+  oauth2:
+    client:
+      client-id: tpf-service-vinid
+      client-secret: tpf-service-vinid
+      access-token-uri: http://localhost:1100/oauth/token
+    resource:
+      token-info-uri: http://localhost:1100/oauth/check_token
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+logging:
+  level:
+    com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver: WARN
+---
+spring:
+  profiles: dev
+  rabbitmq:
+    host: tpf-opensource-rabbitmq
+  data:
+    mongodb:
+      uri: mongodb://tpf-opensource-mongodb:27017/tpfdb
+security:
+  oauth2:
+    client:
+      access-token-uri: http://tpf-service-authentication:1100/oauth/token
+    resource:
+      token-info-uri: http://tpf-service-authentication:1100/oauth/check_token
+eureka:
+  client:
+    serviceUrl:
+      defaultZone:  http://tpf-service-eureka:8761/eureka
+  instance:
+    hostname: tpf-service-vinid
