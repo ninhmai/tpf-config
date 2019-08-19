@@ -1,6 +1,5 @@
 server:
   port: 4004
-
 spring:
   rabbitmq:
     host: localhost
