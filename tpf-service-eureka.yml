@@ -1,5 +1,12 @@
 server:
   port: 8761
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: tpf-service-eureka
+    password: tpf-service-eureka
+    app-id: tpf-service-eureka
 eureka:
   client:
     registerWithEureka: false
@@ -14,4 +21,8 @@ eureka:
 logging:
   level:
     com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver: WARN
-    
+---
+spring:
+  profiles: dev
+  rabbitmq:
+    host: tpf-opensource-rabbitmq
