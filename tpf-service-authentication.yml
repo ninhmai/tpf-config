@@ -1,6 +1,10 @@
 server:
   port: 1100
 spring:
+  cloud:
+    config:
+      allow-override: true
+      override-none: true
   rabbitmq:
     host: localhost
     port: 5672
@@ -43,6 +47,10 @@ logging:
 ---
 spring:
   profiles: dev
+  cloud:
+    config:
+      allow-override: false
+      override-none: false
   rabbitmq:
     host: tpf-opensource-rabbitmq
   datasource:
