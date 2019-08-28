@@ -1,5 +1,16 @@
 server:
   port: 9000
+spring:
+  cloud:
+    config:
+      allow-override: true
+      override-none: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: tpf-service-zuul
+    password: tpf-service-zuul
+    app-id: tpf-service-zuul
 eureka:
   client:
     registerWithEureka: true
@@ -41,6 +52,12 @@ logging:
 ---
 spring:
   profiles: dev
+  cloud:
+    config:
+      allow-override: false
+      override-none: false
+  rabbitmq:
+    host: tpf-opensource-rabbitmq
 eureka:
   client:
     serviceUrl:
