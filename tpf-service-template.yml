@@ -55,6 +55,54 @@ security:
 eureka:
   client:
     serviceUrl:
-      defaultZone:  http://tpf-service-eureka:8761/eureka
+      defaultZone: http://tpf-service-eureka:8761/eureka
+  instance:
+    hostname: tpf-service-template
+---
+spring:
+  profiles: uat
+  cloud:
+    config:
+      allow-override: false
+      override-none: false
+  rabbitmq:
+    host: tpf-opensource-rabbitmq
+  data:
+    mongodb:
+      uri: mongodb://10.1.66.30:27017/tpfdb
+security:
+  oauth2:
+    client:
+      access-token-uri: http://tpf-service-authentication:1100/oauth/token
+    resource:
+      token-info-uri: http://tpf-service-authentication:1100/oauth/check_token
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://tpf-service-eureka:8761/eureka
+  instance:
+    hostname: tpf-service-template
+---
+spring:
+  profiles: pro
+  cloud:
+    config:
+      allow-override: false
+      override-none: false
+  rabbitmq:
+    host: tpf-opensource-rabbitmq
+  data:
+    mongodb:
+      uri: mongodb://10.1.65.23:27017/tpfdb
+security:
+  oauth2:
+    client:
+      access-token-uri: http://tpf-service-authentication:1100/oauth/token
+    resource:
+      token-info-uri: http://tpf-service-authentication:1100/oauth/check_token
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://tpf-service-eureka:8761/eureka
   instance:
     hostname: tpf-service-template

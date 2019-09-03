@@ -21,13 +21,31 @@ eureka:
   instance:
     preferIpAddress: true
   server:
-      waitTimeInMsWhenSyncEmpty: 5
+    waitTimeInMsWhenSyncEmpty: 5
 logging:
   level:
     com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver: WARN
 ---
 spring:
   profiles: dev
+  cloud:
+    config:
+      allow-override: false
+      override-none: false
+  rabbitmq:
+    host: tpf-opensource-rabbitmq
+---
+spring:
+  profiles: uat
+  cloud:
+    config:
+      allow-override: false
+      override-none: false
+  rabbitmq:
+    host: tpf-opensource-rabbitmq
+---
+spring:
+  profiles: pro
   cloud:
     config:
       allow-override: false

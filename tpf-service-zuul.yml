@@ -23,20 +23,20 @@ zuul:
   host:
     connect-timeout-millis: 60000
     socket-timeout-millis: 60000
-  routes:  
+  routes:
     tpf_service_authentication:
       path: /api/auth/**
       sensitiveHeaders:
       serviceId: TPF-SERVICE-AUTHENTICATION
     tpf_service_restclient:
       path: /api/**
-      sensitiveHeaders: 
+      sensitiveHeaders:
       serviceId: TPF-SERVICE-RESTCLIENT
   add-proxy-headers: true
-  
+
 ribbon:
   ReadTimeout: 6000
-  ConnectTimeout: 60000  
+  ConnectTimeout: 60000
 hystrix:
   command:
     default:
@@ -48,10 +48,39 @@ hystrix:
 logging:
   level:
     com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver: WARN
-
 ---
 spring:
   profiles: dev
+  cloud:
+    config:
+      allow-override: false
+      override-none: false
+  rabbitmq:
+    host: tpf-opensource-rabbitmq
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://tpf-service-eureka:8761/eureka
+  instance:
+    hostname: tpf-service-zuul
+---
+spring:
+  profiles: uat
+  cloud:
+    config:
+      allow-override: false
+      override-none: false
+  rabbitmq:
+    host: tpf-opensource-rabbitmq
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://tpf-service-eureka:8761/eureka
+  instance:
+    hostname: tpf-service-zuul
+---
+spring:
+  profiles: pro
   cloud:
     config:
       allow-override: false
