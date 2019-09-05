@@ -15,6 +15,8 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/tpfdb
+  url:
+    first-check-risk: http://10.131.21.137:52233/sale_page/api_management/firstcheck/
 security:
   oauth2:
     client:
