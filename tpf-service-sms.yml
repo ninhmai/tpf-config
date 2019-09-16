@@ -1,0 +1,108 @@
+server:
+  port: 4013
+spring:
+  cloud:
+    config:
+      allow-override: true
+      override-none: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: tpf-service-sms
+    password: tpf-service-sms
+    app-id: tpf-service-sms
+    logstash: tpf-service-logstash-sms
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/tpfdb
+security:
+  oauth2:
+    client:
+      client-id: tpf-service-sms
+      client-secret: tpf-service-sms
+      access-token-uri: http://localhost:1100/oauth/token
+    resource:
+      token-info-uri: http://localhost:1100/oauth/check_token
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+logging:
+  level:
+    com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver: WARN
+---
+spring:
+  profiles: dev
+  cloud:
+    config:
+      allow-override: false
+      override-none: false
+  rabbitmq:
+    host: tpf-opensource-rabbitmq
+  data:
+    mongodb:
+      uri: mongodb://tpf-opensource-mongodb:27017/tpfdb
+security:
+  oauth2:
+    client:
+      access-token-uri: http://tpf-service-authentication:1100/oauth/token
+    resource:
+      token-info-uri: http://tpf-service-authentication:1100/oauth/check_token
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://tpf-service-eureka:8761/eureka
+  instance:
+    hostname: tpf-service-sms
+---
+spring:
+  profiles: uat
+  cloud:
+    config:
+      allow-override: false
+      override-none: false
+  rabbitmq:
+    host: tpf-opensource-rabbitmq
+  data:
+    mongodb:
+      uri: mongodb://10.1.66.30:27017/tpfdb
+security:
+  oauth2:
+    client:
+      access-token-uri: http://tpf-service-authentication:1100/oauth/token
+    resource:
+      token-info-uri: http://tpf-service-authentication:1100/oauth/check_token
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://tpf-service-eureka:8761/eureka
+  instance:
+    hostname: tpf-service-sms
+---
+spring:
+  profiles: pro
+  cloud:
+    config:
+      allow-override: false
+      override-none: false
+  rabbitmq:
+    host: tpf-opensource-rabbitmq
+  data:
+    mongodb:
+      uri: mongodb://10.1.65.23:27017/tpfdb
+security:
+  oauth2:
+    client:
+      access-token-uri: http://tpf-service-authentication:1100/oauth/token
+    resource:
+      token-info-uri: http://tpf-service-authentication:1100/oauth/check_token
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://tpf-service-eureka:8761/eureka
+  instance:
+    hostname: tpf-service-sms
