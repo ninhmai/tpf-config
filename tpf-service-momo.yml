@@ -15,6 +15,10 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/tpfdb
+  url:
+    automation: http://localhost:8383/customers
+    momo-status: https://outsidepaymenttest.tpb.vn/ficomomo/api/loan/update
+    momo-disburse: https://outsidepaymenttest.tpb.vn/ficomomo/api/loan/disburse
 security:
   oauth2:
     client:
