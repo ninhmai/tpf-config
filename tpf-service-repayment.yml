@@ -1,0 +1,116 @@
+server:
+  port: 4021
+spring:
+  cloud:
+    config:
+      allow-override: true
+      override-none: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: tpf-service-repayment
+    password: tpf-service-repayment
+    app-id: tpf-service-repayment
+    logstash: tpf-service-logstash-repayment
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ficodb
+    username: postgres
+    password: postgres
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate.ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: false
+        jdbc:
+          lob:
+            non_contextual_creation: true
+security:
+  oauth2:
+    client:
+      client-id: tpf-service-repayment
+      client-secret: tpf-service-repayment
+      access-token-uri: http://localhost:1100/oauth/token
+    resource:
+      token-info-uri: http://localhost:1100/oauth/check_token
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+logging:
+  level:
+    com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver: WARN
+---
+spring:
+  profiles: dev
+  cloud:
+    config:
+      allow-override: false
+      override-none: false
+  rabbitmq:
+    host: tpf-opensource-rabbitmq
+  datasource:
+    url: jdbc:postgresql://tpf-opensource-postgres:5432/tpfdb
+security:
+  oauth2:
+    client:
+      access-token-uri: http://tpf-service-authentication:1100/oauth/token
+    resource:
+      token-info-uri: http://tpf-service-authentication:1100/oauth/check_token
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://tpf-service-eureka:8761/eureka
+  instance:
+    hostname: tpf-service-repayment
+---
+spring:
+  profiles: uat
+  cloud:
+    config:
+      allow-override: false
+      override-none: false
+  rabbitmq:
+    host: tpf-opensource-rabbitmq
+  datasource:
+    url: jdbc:postgresql://10.1.66.30:5435/ficodb
+security:
+  oauth2:
+    client:
+      access-token-uri: http://tpf-service-authentication:1100/oauth/token
+    resource:
+      token-info-uri: http://tpf-service-authentication:1100/oauth/check_token
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://tpf-service-eureka:8761/eureka
+  instance:
+    hostname: tpf-service-repayment
+---
+spring:
+  profiles: pro
+  cloud:
+    config:
+      allow-override: false
+      override-none: false
+  rabbitmq:
+    host: tpf-opensource-rabbitmq
+  datasource:
+    url: jdbc:postgresql://10.1.65.23:5435/ficodb
+security:
+  oauth2:
+    client:
+      access-token-uri: http://tpf-service-authentication:1100/oauth/token
+    resource:
+      token-info-uri: http://tpf-service-authentication:1100/oauth/check_token
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://tpf-service-eureka:8761/eureka
+  instance:
+    hostname: tpf-service-repayment
